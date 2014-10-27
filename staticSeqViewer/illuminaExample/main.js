@@ -20,9 +20,9 @@ $(document).ready(function(){
     baseColors['G'] = "#ffffaf";
     baseColors['C'] = "#afffaf";
     baseColors['T'] = "#87afff";*/
-    ajax('454Example/exampleSeqData.json', function(msd){ mainSeqData = msd; });
-	ajax('454Example/exampleMainData.json', function(md){ mainData = md; });
-	ajax('resources/baseColors.json', function(bc){ baseColors = bc; });
+    ajax('exampleSeqData.json', function(msd){ mainSeqData = msd; });
+	ajax('exampleMainData.json', function(md){ mainData = md; });
+	ajax('../resources/baseColors.json', function(bc){ baseColors = bc; });
     
 
 	var SeqViewer = new SeqView("canvasDiv1", mainSeqData["seqs"], mainData, cellWidth, cellHeight, baseColors);

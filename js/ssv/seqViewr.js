@@ -1,3 +1,38 @@
+	function tabulate(data, columns, divId) {
+		//adapted from http://stackoverflow.com/questions/9268645/creating-a-table-linked-to-a-csv-file
+	    var table = d3.select(divId).append("table"),
+	        thead = table.append("thead"),
+	        tbody = table.append("tbody");
+	
+	    // append the header row
+	    thead.append("tr")
+	        .selectAll("th")
+	        .data(columns)
+	        .enter()
+	        .append("th")
+	            .attr("style", "font-weight: bold; padding: 2px 4px;")
+	            .text(function(column) { return column; });
+	
+	    // create a row for each object in the data
+	    var rows = tbody.selectAll("tr")
+	        .data(data)
+	        .enter()
+	        .append("tr");
+	
+	    // create a cell in each row for each column
+	    var cells = rows.selectAll("td")
+	        .data(function(row) {
+	            return columns.map(function(column) {
+	                return {column: column, value: row[column]};
+	            });
+	        })
+	        .enter()
+	        .append("td")
+	            .attr("style", "padding: 2px 4px;")
+	            .text(function(d) { return d.value; });
+	    
+	    return table;
+	}
 	function addMouseScrollListener(obj, up, down){
         // from http://www.sitepoint.com/html5-javascript-mouse-wheel/
         this.handler = function(e){
@@ -84,13 +119,15 @@
 	        seqContext.strokeStyle = "#000000";
 			seqContext.lineWidth   = 1;
 	    	for(var hi = sStart; hi -sStart < this.nSeqs ; hi++){
+	    		console.log(hi);
+	    		console.log(this.nSeqs);
 	    		seqContext.fillStyle = "#EEEEEE";
 		    	seqContext.fillRect(0, (hi - sStart)*this.ch, this.nameOffSet, this.ch);
 		    	seqContext.strokeRect(0, (hi - sStart)*this.ch, this.nameOffSet, this.ch);
 		    	seqContext.fillStyle = "#000000";
 				seqContext.fillText(seqData[hi]["name"], 2, (hi - sStart)*this.ch + this.ch/2.0);
 	    	}	    	
-	    	for(var hi = sStart; hi -sStart < this.nSeqs ; hi++){
+	    	for(var hi = sStart; hi - sStart < this.nSeqs ; hi++){
 	    		this.paintSeq(seqContext, hi - sStart,
 	    		 seqData[hi]["seq"], bStart);
 	    	}
@@ -150,7 +187,10 @@
 		this.canvas.height = $(this.masterDiv).height() * 0.95;
 		var nameOffSet = 10 * cellWidth;
 		var numOfBases = Math.floor((this.canvas.width - cellWidth - nameOffSet)/cellWidth);
-	 	var numOfSeqs = Math.floor((this.canvas.height - cellHeight)/cellHeight);
+	 	var numOfSeqs = Math.min(Math.floor((this.canvas.height - cellHeight)/cellHeight), seqs.length);
+	 	console.log(numOfSeqs);
+	 	console.log(Math.floor((this.canvas.height - cellHeight)/cellHeight));
+	 	console.log(seqs.length);
 		this.painter = new SeqPainter(cellWidth, cellHeight, numOfSeqs, numOfBases, nameOffSet, baseColors);
 		this.seqs = seqs;
 		this.seqData = seqData;
@@ -187,7 +227,7 @@
 		this.canvas.width = $(this.masterDiv).width() * 0.98;
 		this.canvas.height = $(this.masterDiv).height() * 0.95;
 		this.painter.nBases = Math.floor((this.canvas.width - this.painter.cw - this.painter.nameOffSet)/this.painter.cw);
-	 	this.painter.nSeqs = Math.floor((this.canvas.height - this.painter.ch)/this.painter.ch);
+	 	this.painter.nSeqs = Math.min(Math.floor((this.canvas.height - this.painter.ch)/this.painter.ch),this.seqs.length);
 	};
 	
 	SeqView.prototype.updateCanvas = function(){
