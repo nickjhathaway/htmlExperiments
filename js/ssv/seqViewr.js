@@ -183,7 +183,7 @@
 	
 	SeqView.prototype.setUpCanvas = function(){
 		$(this.masterDiv).width((window.innerWidth - 10) * 0.98);
-		$(this.masterDiv).height((window.innerHeight - 60) * 0.98);
+		$(this.masterDiv).height((window.innerHeight - 60) * 0.80);
 		this.canvas.width = $(this.masterDiv).width() * 0.98;
 		this.canvas.height = $(this.masterDiv).height() * 0.95;
 		this.painter.nBases = Math.floor((this.canvas.width - this.painter.cw - this.painter.nameOffSet)/this.painter.cw);
@@ -191,10 +191,10 @@
 	};
 	
 	SeqView.prototype.updateCanvas = function(){
-		var changingHeight = (window.innerHeight - 60) * 0.98;
+		var changingHeight = (window.innerHeight - 60) * 0.80;
 		var changingWidth = (window.innerWidth - 10) * 0.98;
 		$(this.masterDiv).width((window.innerWidth - 10) * 0.98);
-		$(this.masterDiv).height((window.innerHeight - 60) * 0.98);
+		$(this.masterDiv).height((window.innerHeight - 60) * 0.80);
 		this.canvas.width = $(this.masterDiv).width() * 0.98;
 		this.canvas.height = $(this.masterDiv).height() * 0.95;
 		if(changingHeight > this.canvas.height){
