@@ -14,14 +14,14 @@ $(document).ready(function(){
                  success: function(ct){ func(ct); } });
     }
     
-    var mainSeqData2, mainData2;
-        var baseColors = {};
+    var mainSeqData, mainData;
+    var baseColors = {};
     /*baseColors['A'] = "#ff8787";
     baseColors['G'] = "#ffffaf";
     baseColors['C'] = "#afffaf";
     baseColors['T'] = "#87afff";*/
-    ajax('resources/exampleSeqData.json', function(msd){ mainSeqData = msd; });
-	ajax('resources/exampleMainData.json', function(md){ mainData = md; });
+    ajax('454Example/exampleSeqData.json', function(msd){ mainSeqData = msd; });
+	ajax('454Example/exampleMainData.json', function(md){ mainData = md; });
 	ajax('resources/baseColors.json', function(bc){ baseColors = bc; });
     
 
