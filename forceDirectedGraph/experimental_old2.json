@@ -1,0 +1,20 @@
+{
+  "nodes":[ 
+    {"name":"Seq.02_t723","size":10, "color":"#000000"},
+    {"name":"Seq.03_t3","size":1, "color":"#000000"},
+    {"name":"Seq.06_t3","size":1, "color":"#000000"},
+    {"name":"Seq.07_t704","size":10, "color":"#000000"},
+    {"name":"Seq.10_t9","size":1, "color":"#000000"},
+    {"name":"Seq.11_t3","size":1, "color":"#000000"},
+    {"name":"Seq.12_t3","size":1, "color":"#000000"},
+    {"name":"Seq.13_t3","size":1, "color":"#000000"}
+  ],
+  "links":[ 
+    {"source":0,"target":1,"value":0.671053, "color":"#000000"},
+    {"source":2,"target":3,"value":0.671053, "color":"#000000"},
+    {"source":3,"target":4,"value":0.671053, "color":"#000000"},
+    {"source":3,"target":5,"value":0.671053, "color":"#000000"},
+    {"source":3,"target":6,"value":0.671053, "color":"#000000"},
+    {"source":3,"target":7,"value":0.671053, "color":"#000000"}
+  ]
+}
