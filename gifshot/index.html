@@ -1,0 +1,32 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+	<title>Population Info</title>
+	<link rel="stylesheet" href="http://code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
+	<script src="../js/gifshot/gifshot.js"></script>
+  </head>
+  <body>
+  	<script>
+		gifshot.createGIF({
+			'images' : [
+			'qluster_clustering.001.jpg',
+			'qluster_clustering.002.jpg',
+			'qluster_clustering.003.jpg',
+			'qluster_clustering.004.jpg',
+			'qluster_clustering.005.jpg',
+			'qluster_clustering.006.jpg'],
+			'gifWidth' : 1600,
+			'gifHeight' : 1600,
+			'interval' : 1
+		}, function(obj) {
+			if (!obj.error) {
+				var image = obj.image, animatedImage = document.createElement('img');
+				animatedImage.src = image;
+				document.body.appendChild(animatedImage);
+			}
+		});
+	</script>
+  </body>
+</html>
