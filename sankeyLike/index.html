@@ -16,11 +16,51 @@
 <div id="chart"></div>
 
 <script>
+
+function getPromise(url) {
+  // Return a new promise.
+  return new Promise(function(resolve, reject) {
+    // Do the usual XHR stuff
+    var req = new XMLHttpRequest();
+    req.open('GET', url);
+
+    req.onload = function() {
+      // This is called even on 404 etc
+      // so check the status
+      if (req.status == 200) {
+        // Resolve the promise with the response text
+        resolve(req.response);
+      }
+      else {
+        // Otherwise reject with the status text
+        // which will hopefully be a meaningful error
+        reject(Error(req.statusText));
+      }
+    };
+
+    // Handle network errors
+    req.onerror = function() {
+      reject(Error("Network Error"));
+    };
+
+    // Make the request
+    req.send();
+  });
+}
+
+function getJSON(url) {
+  return getPromise(url).then(JSON.parse).catch(function(err) {
+    console.log("getJSON failed for", url, err);
+    throw err;
+  });
+}
+
+
 function ajax(url, func) {
 	$.ajax({
 		url : url,
 		dataType : 'json',
-		async : false,
+		async : true,
 		success : function(ct) {
 			func(ct);
 		}
@@ -34,12 +74,19 @@ function ajaxRet(url){
 }
 
 $(document).ready(function(){
-	graph = ajaxRet("out.json")
-	console.log(graph)
-	var mOverLapDrawer = new MipOverlapper("#chart", graph)
-	$(window).bind("resize", function(){
-		mOverLapDrawer.updateSize()
-	});
+
+getJSON('out.json').then(function(response) {
+  var mOverLapDrawer = new MipOverlapper("#chart", response)
+  		$(window).bind("resize", function(){
+			mOverLapDrawer.updateSize()
+		});
+});
+		
+
+
+	//ajax("out.json",function(graph){
+
+	//});
 });
 
 
