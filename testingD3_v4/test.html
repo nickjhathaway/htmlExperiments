@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<html>
+<head>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://d3js.org/d3.v3.min.js"></script>
+</head>
+<body>
+<script>
+$(document).ready(function(){
+//var color = d3.scale.category20();
+var color = d3.scaleOrdinal(d3.schemeCategory10);
+d3.select("body")
+  .selectAll("div")
+    .data([1,2,3,4,5])
+  .enter().append("div")
+    .style("width", function(d) { return d * 10 + "px"; })
+    .style("background-color", function(d) { return color(d)})
+    .text(function(d) { return d; });
+});
+</script>
+</body>
+</html>
+

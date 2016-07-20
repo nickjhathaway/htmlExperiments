@@ -4,7 +4,7 @@
 <head>
 <link rel="stylesheet" href="mipOverlap.css">
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-<script src="https://d3js.org/d3.v3.min.js"></script>
+<script src="https://d3js.org/d3.v4.min.js"></script>
 <script type="text/javascript" src="mipOverlap.js"></script>
 
 <title>Mip Overlap Diagram</title>
@@ -58,7 +58,7 @@ function getJSON(url) {
 
 
 $(document).ready(function(){
-var color = d3.scale.category20();
+
 
 getJSON('out.json').then(function(response) {
   var mOverLapDrawer = new MipOverlapper("#chart", response)
